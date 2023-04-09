@@ -13,11 +13,11 @@ import json
 ######################
 
 # Connect to the database
-con = sqlite3.connect('src/data/practica1.db')
+con = sqlite3.connect('data/practica1.db')
 cur = con.cursor()
 
 # Open the devices info as JSON and transform into SQL
-with open("src/data/devices.json") as f:
+with open("data/devices.json") as f:
     data = json.load(f)
     df = pd.DataFrame(data)
 
@@ -61,7 +61,7 @@ with open("src/data/devices.json") as f:
     analisis.to_sql('analisis', con, if_exists='replace')
 
 # Extract transform CSV into alertas table
-with open("src/data/alerts.csv") as f:
+with open("data/alerts.csv") as f:
     alertas = pd.read_csv(f)
     alertas.to_sql('alertas', con, if_exists='replace')
 

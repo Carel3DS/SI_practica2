@@ -1,4 +1,4 @@
-import flask
+import math
 import sqlite3
 import pandas as pd
 
@@ -30,9 +30,9 @@ def analysis():
 def top_per():
     con = sqlite3.connect('data/practica1.db')
     analisis = pd.read_sql("SELECT * FROM analisis", con)
-    per = analisis['servicios_inseguros']/analisis['servicios']*100
+    per = round(analisis['servicios_inseguros']/analisis['servicios']*100, 2)
     res = pd.merge(analisis['id'], per.rename('percentage'), right_index=True,left_index=True).sort_values(by='percentage',ascending=False)
-    return res
+    return res.dropna()
 
 
 top_per()

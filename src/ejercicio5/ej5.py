@@ -107,7 +107,7 @@ for i in range(len(clf.estimators_)):
                     class_names=y.unique().astype(str).tolist(),
                     rounded=True, proportion=False,
                     precision=2, filled=True)
-    call(['dot', '-Tpng', 'tree.dot', '-o', 'tree'+str(i)+'.png', '-Gdpi=600'])
+    call(['dot', '-Tpng', 'tree.dot', '-o', 'ForestTree'+str(i)+'.png', '-Gdpi=600'])
 
 
 # Obtener la importancia de las características del modelo

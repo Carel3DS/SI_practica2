@@ -1,12 +1,16 @@
+from subprocess import call
+
 import numpy as np
 import pandas as pd
+from graphviz import Source
 from matplotlib import pyplot as plt
 from sklearn import linear_model
 from sklearn.datasets import load_iris
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import mean_squared_error
 from sklearn import tree
 import graphviz #https://graphviz.org/download/
-
+from sklearn.tree import export_graphviz
 
 data_train = pd.read_json("devices_IA_clases.json")
 data_test = pd.read_json("devices_IA_predecir_v2.json")
@@ -80,4 +84,38 @@ graph.render('Ej5.gv', view=True).replace('\\', '/')
 pred_y_test = clf_model.predict(x)
 num_peligrosos = np.sum(pred_y_test == 1)
 print("Numero de disposittivos predichos como peligrosos con el decision tree: ", num_peligrosos)
+
+##Random Forest
+
+
+#Split data
+x = data_test.drop(["peligroso", "id"], axis=1)
+y = data_test["peligroso"]
+clf = RandomForestClassifier(max_depth=2, random_state=0,n_estimators=10)
+clf.fit(x, y)
+
+y_pred = clf.predict(x)
+num_peligrosos = sum(y_pred==1)
+
+print("Numero de dispositivos predichos como peligrosos con el random forest", num_peligrosos)
+
+for i in range(len(clf.estimators_)):
+    estimator = clf.estimators_[i]
+    export_graphviz(estimator,
+                    out_file='tree.dot',
+                    feature_names=x.columns,
+                    class_names=y.unique().astype(str).tolist(),
+                    rounded=True, proportion=False,
+                    precision=2, filled=True)
+    call(['dot', '-Tpng', 'tree.dot', '-o', 'tree'+str(i)+'.png', '-Gdpi=600'])
+
+
+# Obtener la importancia de las características del modelo
+importances = clf.feature_importances_
+indices = np.argsort(importances)[::-1]
+
+# Imprimir la importancia de cada característica
+print("Importancia de las características:")
+for f in range(x.shape[1]):
+    print(f"{f+1}. {x.columns[indices[f]]}: {round(importances[indices[f]], 3)}")
 

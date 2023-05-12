@@ -6,43 +6,11 @@
 </head>
 <body>
     <h1>Centro de Mando Integrado</h1>
-
-    <h3>Seleccionar filtro</h3>
- <input type="radio" onclick="vuln.style.display='block';safe.style.display='none';total.style.display='none'" id="1" name="fav_language" value="HTML" checked>
-    <label for="1">Más vulnerables (>33%)</label>
-<input type="radio" id="2" onclick="vuln.style.display='none';safe.style.display='block';total.style.display='none'" name="fav_language" value="CSS">
-    <label for="2">Más seguros (<33%)</label>
-<input type="radio" id="3" onclick="vuln.style.display='none';safe.style.display='none';total.style.display='block'" name="fav_language" value="JavaScript">
-    <label for="3">Total</label>
-
-    <div id="vuln" style="display: block">
-        <h2>Top Dispositivos más peligrosos (> 33% servicios inseguros)</h2>
-    <ol>
-        {% for name, per in df %}
-        {% if per > 33 %}
-        <li>{{name}} ({{per}} %)</li>
-        {% endif %}
-        {% endfor %}
-    </ol>
-    </div>
-    <div id="safe" style="display: none">
-        <h2>Top Dispositivos más seguros (< 33% servicios inseguros)</h2>
-    <ol>
-        {% for name, per in df[::-1] %}
-        {% if per <= 33 %}
-        <li>{{name}} ({{per}} %)</li>
-        {% endif %}
-        {% endfor %}
-    </ol>
-    </div>
-    <div id="total" style="display: none">
-        <h2>Top dispositivos peligrosos</h2>
-    <ol>
-        {% for name, per in df %}
-        <li>{{name}} ({{per}} %)</li>
-        {% endfor %}
-    </ol>
-    </div>
-
+    <h2>Elegir el ejercicio que quiere ver</h2>
+    <a href="/ejercicio_1">Ejercicio 1</a><br>
+    <a href="/ejercicio_2">Ejercicio 2</a><br>
+    <a href="/ejercicio_3">Ejercicio 3</a><br>
+    <a href="/ejercicio_4">Ejercicio 4</a><br>
+    <a href="/ejercicio_5">Ejercicio 5</a><br>
 </body>
 </html>

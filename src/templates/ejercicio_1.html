@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Centro de Mando Integrado</title>
+</head>
+<body>
+    <h1>Centro de Mando Integrado</h1>
+    <a href="/">Atras</a>
+    <h2>Ejercicio 1</h2>
+
+    <div>
+        <h3>Top IPs origen mas problematicas</h3>
+        <table>
+            <tr>
+                <th>Index</th>
+                <th>IP</th>
+                <th>Count</th>
+            </tr>
+            {% for name, count in ip %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{name}}</td>
+                <td>{{count}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div>
+        <h3>Top dispositivos mas vulnerables</h3>
+        <table>
+            <tr>
+                <th>Index</th>
+                <th>ID</th>
+                <th>Vulnerabilidades</th>
+            </tr>
+            {% for id, vuln_det in vuln %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{id}}</td>
+                <td>{{vuln_det}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+</html>

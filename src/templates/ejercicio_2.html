@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Centro de Mando Integrado</title>
+</head>
+<body>
+    <h1>Centro de Mando Integrado</h1>
+    <h2>Ejercicio 2</h2>
+    <a href="/">Atras</a>
+
+    <h3>Seleccionar filtro</h3>
+ <input type="radio" onclick="vuln.style.display='block';safe.style.display='none';total.style.display='none'" id="1" name="fav_language" value="HTML" checked>
+    <label for="1">Más vulnerables (>33%)</label>
+<input type="radio" id="2" onclick="vuln.style.display='none';safe.style.display='block';total.style.display='none'" name="fav_language" value="CSS">
+    <label for="2">Más seguros (<33%)</label>
+<input type="radio" id="3" onclick="vuln.style.display='none';safe.style.display='none';total.style.display='block'" name="fav_language" value="JavaScript">
+    <label for="3">Total</label>
+
+    <div id="vuln" style="display: block">
+        <h2>Top Dispositivos más peligrosos (> 33% servicios inseguros)</h2>
+    <ol>
+        {% for name, per in df %}
+        {% if per > 33 %}
+        <li>{{name}} ({{per}} %)</li>
+        {% endif %}
+        {% endfor %}
+    </ol>
+    </div>
+    <div id="safe" style="display: none">
+        <h2>Top Dispositivos más seguros (< 33% servicios inseguros)</h2>
+    <ol>
+        {% for name, per in df[::-1] %}
+        {% if per <= 33 %}
+        <li>{{name}} ({{per}} %)</li>
+        {% endif %}
+        {% endfor %}
+    </ol>
+    </div>
+    <div id="total" style="display: none">
+        <h2>Top dispositivos peligrosos</h2>
+    <ol>
+        {% for name, per in df %}
+        <li>{{name}} ({{per}} %)</li>
+        {% endfor %}
+    </ol>
+    </div>
+
+</body>
+</html>

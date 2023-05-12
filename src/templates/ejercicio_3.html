@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Centro de Mando Integrado</title>
+</head>
+<body>
+    <h1>Centro de Mando Integrado</h1>
+    <a href="/">Atras</a>
+    <h2>Ejercicio 3</h2>
+
+    <div>
+        <h3>Las ultimas 10 vulnerabilidades</h3>
+        <table>
+            <tr>
+                <th>Index</th>
+                <th>ID</th>
+                <th>Published</th>
+                <th>Summary</th>
+            </tr>
+            {% for id, published, summary in data %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{id}}</td>
+                <td>{{published}}</td>
+                <td>{{summary}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+</html>

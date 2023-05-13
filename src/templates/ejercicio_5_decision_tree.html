@@ -13,11 +13,8 @@
     <h3>Utilizando un Arbol de Decision podemos predecir si un dispositivo es peligroso o no.</h3>
     <p>Numero de dispositivos NO peligrosos: {{num_no}}</p>
     <p>Numero de dispositivos SI peligrosos: {{num_si}}</p>
+    <img src="{{url_for('static', filename='graph.png')}}">
 
-
-    {% if graph %}
-    <img src="graph.png">
-    {% endif %}
     
 
 

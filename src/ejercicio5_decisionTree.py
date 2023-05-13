@@ -52,8 +52,8 @@ def decision_tree():
     fig2 = tree.export_graphviz(decision_tree, out_file=None, feature_names=["servicios", "servicios_inseguros"],class_names=["no peligroso", "peligroso"],filled=True, rounded=True,special_characters=True)
     graph = graphviz.Source(fig2)
     #graph.format = "png"
-    graph.render('Source.gv', view=True).replace('\\', '/')
-    call(['dot', '-Tpng', '-o', 'graph.png', 'Source.gv'])
+    graph.render(outfile='static/graph.png', format="png", view=True, cleanup=True).replace('\\', '/')
+    #call(['dot', '-Tpng', '-o', 'graph.png', 'Source.gv'])
 
     #graph.view()
     return graph,num_no, num_si

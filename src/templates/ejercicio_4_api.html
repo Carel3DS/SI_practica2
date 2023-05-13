@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Centro de Mando Integrado</title>
+</head>
+<body>
+    <h1>Centro de Mando Integrado</h1>
+    <a href="/">Atras</a>
+    <h2>Ejercicio 4: API</h2>
+    <div>
+        <p><img src="{{user.avatar_url}}" style="width: 128px; height: 128px"></p>
+        <h3><a href="{{user.html_url}}">{{user.login}}</a></h3>
+        <hr>
+        <p>Bio:</p>
+        <p>{{user.bio}}</p>
+        <hr>
+        <p>Created at: {{user.created_at}}</p>
+        <p>Public Repositories: {{user.public_repos}}</p>
+    </div>
+
+
+
+</body>
+</html>

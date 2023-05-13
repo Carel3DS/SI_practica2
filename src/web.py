@@ -1,8 +1,11 @@
+import plotly.utils
 from flask import Flask
 from flask import render_template
+import json
 import ejercicio1
 import ejercicio2
 import ejercicio3
+import ejercicio5_regresionLineal
 #import ejercicio5.ej5
 
 app = Flask(__name__)
@@ -31,6 +34,14 @@ def ej_2():
 def ej_3():
     cve = list(ejercicio3.f().head(10).itertuples(index=False, name=None))
     return render_template("ejercicio_3.html", data=cve)
+
+
+@app.route("/ejercicio_5_regresion_lineal")
+def ej_5_regr():
+    graph, num_no, num_si = ejercicio5_regresionLineal.regresion_lineal()
+    a = plotly.utils.PlotlyJSONEncoder
+    graphJSON = json.dumps(graph, cls=a)
+    return render_template("ejercicio_5_regresion_lineal.html", graphJSON=graphJSON, num_no=num_no, num_si=num_si)
 
 
 if __name__ == '__main__':

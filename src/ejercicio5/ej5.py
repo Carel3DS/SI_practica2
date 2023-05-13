@@ -12,8 +12,8 @@ from sklearn import tree
 import graphviz #https://graphviz.org/download/
 from sklearn.tree import export_graphviz
 
-data_train = pd.read_json("devices_IA_clases.json")
-data_test = pd.read_json("devices_IA_predecir_v2.json")
+data_train = pd.read_json("../data/devices_IA_clases.json")
+data_test = pd.read_json("../data/devices_IA_predecir_v2.json")
 
 
 #regresionLineal

@@ -26,16 +26,12 @@ def regresion_lineal():
     data_x_logistic_regression = data["servicios_inseguros"] / data["servicios"]
     data_x_logistic_regression = data_x_logistic_regression.fillna(0).to_frame()
 
-    # training the model
-    # With data from x guess y
-    x_train, x_test, y_train, y_test = train_test_split(data_x, data_y, test_size=0.2)
-
     # logisticregression es una opcion para tener resultado binario (% de servicios inseguros -> si/no peligroso)
     # multinomialnb usa mas de un parametro (# de servicios + # de servicios inseguros -> si/no peligroso)
     # they are both shit
     # pred solo puede ser 1 o 0, sin valores entremedias
     regresion = LogisticRegression()
-    regresion.fit(x_train, y_train["peligroso"].values.ravel())
+    regresion.fit(data_x, data_y["peligroso"].values.ravel())
     pred = regresion.predict(data_x)
     # print(pred)
 

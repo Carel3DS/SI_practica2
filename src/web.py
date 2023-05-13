@@ -1,5 +1,7 @@
+import os
+
 import plotly.utils
-from flask import Flask
+from flask import Flask, send_from_directory, send_file
 from flask import render_template, request
 import json
 import ejercicio1
@@ -7,6 +9,7 @@ import ejercicio2
 import ejercicio3
 import ejercicio5_regresionLineal
 import ejercicio4_api
+import ejercicio4_pdf
 
 # import ejercicio5.ej5
 
@@ -38,8 +41,14 @@ def ej_3():
     return render_template("ejercicio_3.html", data=cve)
 
 
+@app.route("/ejercicio_4_pdf")
+def ej_4_pdf():
+    pdf = ejercicio4_pdf.f()
+    return send_file(pdf)
+
+
 @app.route("/ejercicio_4_api", methods=["GET", "POST"])
-def ej_4():
+def ej_4_api():
     username = request.form.get("username")
     data = ejercicio4_api.f(username)
     return render_template("ejercicio_4_api.html", user=data)

@@ -1,15 +1,15 @@
-import os
-
 import plotly.utils
-from flask import Flask, send_from_directory, send_file
+from flask import Flask
 from flask import render_template, request
 import json
 import ejercicio1
 import ejercicio2
 import ejercicio3
 import ejercicio5_regresionLineal
+import ejercicio5_decisionTree
+import ejercicio5_randomForest
+
 import ejercicio4_api
-import ejercicio4_pdf
 
 # import ejercicio5.ej5
 
@@ -41,14 +41,8 @@ def ej_3():
     return render_template("ejercicio_3.html", data=cve)
 
 
-@app.route("/ejercicio_4_pdf")
-def ej_4_pdf():
-    pdf = ejercicio4_pdf.f()
-    return send_file(pdf)
-
-
 @app.route("/ejercicio_4_api", methods=["GET", "POST"])
-def ej_4_api():
+def ej_4():
     username = request.form.get("username")
     data = ejercicio4_api.f(username)
     return render_template("ejercicio_4_api.html", user=data)
@@ -60,6 +54,21 @@ def ej_5_regr():
     a = plotly.utils.PlotlyJSONEncoder
     graphJSON = json.dumps(graph, cls=a)
     return render_template("ejercicio_5_regresion_lineal.html", graphJSON=graphJSON, num_no=num_no, num_si=num_si)
+
+@app.route("/ejercicio_5_decision_Tree")
+def ej_5_Decisiontree():
+    graph, num_no, num_si = ejercicio5_decisionTree.decision_tree()
+
+
+    return render_template("ejercicio_5_decision_tree.html", graph=graph, num_no=num_no, num_si=num_si)
+
+
+@app.route("/ejercicio_5_random_Forest")
+def ej_5_RandomForest():
+    graph, num_no, num_si = ejercicio5_randomForest.random_forest()
+    a = plotly.utils.PlotlyJSONEncoder
+    graphJSON = json.dumps(graph, cls=a)
+    return render_template("ejercicio_5_random_forest.html", graphJSON=graphJSON, num_no=num_no, num_si=num_si)
 
 
 if __name__ == '__main__':

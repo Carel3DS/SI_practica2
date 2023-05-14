@@ -1,3 +1,5 @@
+import os
+
 import plotly.utils
 from flask import Flask
 from flask import render_template, request
@@ -57,18 +59,23 @@ def ej_5_regr():
 
 @app.route("/ejercicio_5_decision_Tree")
 def ej_5_Decisiontree():
-    graph, num_no, num_si = ejercicio5_decisionTree.decision_tree()
-
-
-    return render_template("ejercicio_5_decision_tree.html", graph=graph, num_no=num_no, num_si=num_si)
+    num_no, num_si = ejercicio5_decisionTree.decision_tree()
+    return render_template("ejercicio_5_decision_tree.html", num_no=num_no, num_si=num_si)
 
 
 @app.route("/ejercicio_5_random_Forest")
 def ej_5_RandomForest():
-    graph, num_no, num_si = ejercicio5_randomForest.random_forest()
-    a = plotly.utils.PlotlyJSONEncoder
-    graphJSON = json.dumps(graph, cls=a)
-    return render_template("ejercicio_5_random_forest.html", graphJSON=graphJSON, num_no=num_no, num_si=num_si)
+    num_no, num_si = ejercicio5_randomForest.random_forest()
+    image_dir = '.\\static\\'
+    # Obtener una lista de todos los archivos en el directorio
+    all_files = os.listdir(image_dir)
+    #Eliminar de la lista la imagen generada con el algoritmo decisionTree
+    all_files.remove("graph.png")
+
+    image_files = all_files
+
+    # Renderizar la plantilla HTML con la lista de nombres de archivo de las imágenes
+    return render_template("ejercicio_5_random_forest.html", num_no=num_no, num_si=num_si,images=image_files)
 
 
 if __name__ == '__main__':

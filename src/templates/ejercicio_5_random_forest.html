@@ -14,15 +14,10 @@
     <p>Numero de dispositivos NO peligrosos: {{num_no}}</p>
     <p>Numero de dispositivos SI peligrosos: {{num_si}}</p>
 
-    {% if graphJSON %}
-    <div id='chart' class='chart'></div>
-    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-    <script type='text/javascript'>
-      var graphs = {{graphJSON | safe}};
-      Plotly.plot('chart',graphs,{});
+    {% for image in images %}
+        <img src="{{url_for('static', filename=image)}}">
+    {% endfor %}
 
-    </script>
-    {% endif %}
 
 
 </div>

@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Centro de Mando Integrado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Centro de Mando Integrado</h1>
-    <a href="/">Atras</a>
-    <h2>Ejercicio 4: API</h2>
-    <div>
-        <p><img src="{{user.avatar_url}}" style="width: 128px; height: 128px"></p>
+    <h1 align="center">Centro de Mando Integrado</h1>
+    <div class="container" style="padding: 2% 0">
+        <h1 class="display-6" align="center">Ejercicio 4: API</h1>
+        <p align="center" style="padding: 10px 0"><img src="{{user.avatar_url}}" style="width: 128px; height: 128px" alt=""></p>
         <h3><a href="{{user.html_url}}">{{user.login}}</a></h3>
         <hr>
-        <p>Bio:</p>
+        <h6>Bio:</h6>
         <p>{{user.bio}}</p>
         <hr>
-        <p>Created at: {{user.created_at}}</p>
+        <h6>Created at: {{user.created_at}}</h6>
         <p>Public Repositories: {{user.public_repos}}</p>
+        <a href="/"><button class="btn btn-primary">Atrás</button></a>
+
     </div>
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 </body>
 </html>

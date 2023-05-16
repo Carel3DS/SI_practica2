@@ -19,6 +19,7 @@ def f():
     # Read JSON into dataframe and get ID and Publish time
     df = pd.read_json(response)
 
-    latest = df[['id', 'Published', 'summary']]
+    latest = df[['id', 'cwe', 'Published']]
+    latest = latest.replace(["NVD-CWE-noinfo", "Unknown"], "—")
     #print(latest)
     return latest

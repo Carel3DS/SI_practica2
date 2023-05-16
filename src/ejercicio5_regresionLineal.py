@@ -54,5 +54,9 @@ def regresion_lineal():
     #fig.show()
     return fig, num_no, num_si
 
+def create_image():
+    fig, _, __ = regresion_lineal()
+    fig.write_image("data/regr_lin_image.png")
+    return "data/regr_lin_image.png"
 
 #regresion_lineal()
